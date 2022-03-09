@@ -16,29 +16,29 @@ I recommend using sqlite3 as it’s what I've configured by default. I've seeded
 
 1. unzip the db.rar file 
 
-	unzip the db.rar file and run (skip if not zipped)
+		unzip the db.rar file and run (skip if not zipped)
 
-	python  manage.py migrate
+		python  manage.py migrate
 
 2. Or:  (if madedata.rar or madedata.json  file exists) ( if it doesn’t skip this)
 
-	Unzip the madedata.rar to have madedata.json then run: (skip if not zipped)
+		Unzip the madedata.rar to have madedata.json then run: (skip if not zipped)
 
-	python  manage.py migrate
+		python  manage.py migrate
 
-	python manage.py loaddata madedata.json 
+		python manage.py loaddata madedata.json 
 
 	( this might take a while to download)
 
 3. Or: If you’re not comfortable working with these ready made data grab your coffee I've got you covered. I’ve created a custom django command called save_latest_items  for you to download the latest news and stories for the app to start with kidly run:
 
-	Delete any db.sqlite file in root directory (if any ) then run:
+		Delete any db.sqlite file in root directory (if any ) then run:
 
-	python  manage.py migrate
+		python  manage.py migrate
 
-	python manage.py save_latest_items 	
+		python manage.py save_latest_items 	
 
-	( this might take a while to download)
+		( this might take a while to download)
 
 And boom!! your database is loaded with items needed enough to start.
 {note: running  the custom command ‘save_latest_items’ at anytime would only update the database with latest from the API}
@@ -66,19 +66,19 @@ And boom!! your app is running with latest items getting downloaded automaticall
  
 Note: ensure redis is up and running; you can try redis-cli PING to get a PONG.
 
-#LOGIC:
+# LOGIC:
 VIEWS.PY  -  LOGIC
 I used django filters to filter the items by text and manually get an object_type query-param to filter by type and set a pagination of 100 to ease workload on the database and as recommended by the test.
 In the detail view I get necessary objects by id and catch where necessary. Rendering all related kid-comments.
 I also created my custom template filters in the frontend to answer some complexities in the requirements.
 Filtration and pagination is also implemented in my api endpoint
  
-##TASKS.PY-LOGIC
+## TASKS.PY-LOGIC
 As there are different ways by which items from the API could be downloaded and for some reasons own as opinion to functions of building another gui for the api like we’re doing, hence i created a function to seed the database fetching items from the api by providing two arguments: the range of objects keys or id’s to iterate over and save. I’ve named it create_items_from_api( startt, endd ). This module or function is what I call in several cases to populate the database as I like. This function is the module I used to populate the earliest items to the database. This unit module or function is the function I called in the custom command line to populate the latest news to begin with, calling the dowload_trending() module, and again  I called it when I created another function called create_items_from_api_beat_latest()  . This later function is what I passed to celery beat to be  called periodically in the background.
  
 
 
-#NAVIGATION
+# NAVIGATION
 
 The api does not provide an end point where all articles could be downloaded at once, so this makes it to be really interesting as I have to download this items one by one, I stated saving to database right from the onset of beginning of Post creation, and I save 40000+ plus earliest Posts and 20000+ latest post to easily test and check for cross functionality and have assured behavior of the relation of these items.
  
@@ -88,11 +88,11 @@ Click on an item to redirect to the detail page to view all attributes and relat
   On this detail page is a pen icon to redirect to the api details where you can perform the R-U-D function provided the item was created  byUS and not from the API. Kindly check and see how I have made necessary catches. http://127.0.0.1:8000/api/< id >/ 
  
  
-##BONUS
+## BONUS
 
 I found the API very interesting and played a little bit around with the relations. I created an author posts’ page to view all posts, comments and activities performed by the respective user. On  any item detail page, if you click on the author’s name it will take you to this author’s dashboard page. The page may be useful in the future as the author can make changes to his activities here provided they were first created by him	@ http://127.0.0.1:8000/author_review/< username >/ 
   
-##Limitations :
+## Limitations :
 This app is recommended to run locally,  if for any reason you want  to  make it public, kindly contact the developer @ mallamsiddiq@gmail.com  for further advanced considerations.
  
 Also, the API items are downloaded once at a time and hence might not be expected that all items be found on this app soon.
