@@ -23,21 +23,12 @@ from django.db import connection
 from sqlalchemy import create_engine
 import pandas as pd
 
-<<<<<<< HEAD
-# print(int(Items.objects.exclude(order_frm=None).first().api_id))
-# print(int(Items.objects.filter(order_frm=None).last().api_id))
-=======
->>>>>>> f66bbbf (commit changes to doc)
 def error_404(request, exception):
     data = {'code':404}
     return render(request,'blog/error.html', data)
 
 def home(request):
-<<<<<<< HEAD
-    items= Items.objects.filter(order_frm=None)
-=======
     items= Items.objects.filter(parent=None) # get all top level items
->>>>>>> f66bbbf (commit changes to doc)
     if request.GET.get('item_type'):
         try:
             items=Items.objects.filter(type=request.GET.get('item_type'))
@@ -46,20 +37,12 @@ def home(request):
         if len (items)<1:
              return HttpResponse("""<h1>you input an unavailable object type - <i>'{}'</i>.</h1>
                 <h3> this may also happen if this object type is not created with us yet. Thanks </h3><br>
-<<<<<<< HEAD
-                <span> kindly input valid parameter.</span>""".format(p))
-=======
                 <span> kindly input valid parameter.</span>""".format(request.GET.get('item_type')))  # i made changes to this line earlier
->>>>>>> f66bbbf (commit changes to doc)
 
     filter_form = ItemsFilter(request.GET, queryset=items)
     paginator = Paginator(filter_form.qs, 100)
     if len (filter_form.qs)<1:
-<<<<<<< HEAD
-             return HttpResponse("<h1>no quyery matches your search </i>.</h1><span> kindly input valid parameter.</span>")
-=======
              return HttpResponse("<h1>no quyery matches your search's preference </i>.</h1><span> kindly input valid parameter.</span>")
->>>>>>> f66bbbf (commit changes to doc)
     page_number = 1
     if request.GET.get('page'):
         page_number = request.GET.get('page')

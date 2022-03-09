@@ -3,23 +3,9 @@ from . models import Items
 from celery import shared_task
 import requests
 import datetime
-<<<<<<< HEAD
-
-
-
-
-query=[]
-def get_val(valu,def_val=None):
-    try:
-        return query[valu]
-    except:
-        return def_val
-
-=======
 from django.db import IntegrityError
 
 
->>>>>>> f66bbbf (commit changes to doc)
 @shared_task
 def create_items_from_api(startt,endd):
 	def get_val(valu,def_val=None):
@@ -36,48 +22,14 @@ def create_items_from_api(startt,endd):
 				url=get_val('url'),parent=get_val('parent'),order_frm=get_val('latest'))
 			items_instance.save()
 			print('hurray!! {} saved successfully'.format(items_instance))
-<<<<<<< HEAD
-		except Exception as e:
-			print ('oops!! this is an err {} '.format(e))
-			return('oops!! this is an err {} '.format(e))
-=======
 		except IntegrityError as e:
 			print ('oops!! this is an err {} '.format(e))
 		except:
 			return('oops!! this is an err {} '.format('it might be not null constraint, kindly confirm all fields'))
->>>>>>> f66bbbf (commit changes to doc)
 			break
 	print ('{} Items from API created with success!'.format(items_instance.api_id-startt))
 
 @shared_task
-<<<<<<< HEAD
-def create_items_from_api_beat_earliest():
-	latest_api_item_key= requests.get('https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty').json()
-	latest_database_object_api_key=int(Items.objects.latest('api_id').api_id)
-	if latest_database_object_api_key < latest_api_item_key:
-		create_items_from_api(latest_database_object_api_key+1,latest_database_object_api_key+100)
-	else:
-		print('no latest item order than we have')
-	print('this is celery beat')
-
-@shared_task
-def create_items_from_api_beat_latest():
-	latest_api_item_key= requests.get('https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty').json()
-	earliest_latest_database_object_api_key=int(Items.objects.filter(order_frm=None).last().api_id)
-	latest_database_object_api_key=int(Items.objects.latest('api_id').api_id)
-	if latest_database_object_api_key < latest_api_item_key:
-		create_items_from_api(latest_database_object_api_key+1,latest_api_item_key+1)
-	else:
-		print('no latest item order than we have')
-	if earliest_latest_database_object_api_key > Items.objects.exclude(order_frm=None).first().api_id :
-		create_items_from_api(earliest_latest_database_object_api_key-100,earliest_latest_database_object_api_key)
-	else:
-		print("wawuw!! hurray!! you've reached a match")
-	
-	print('this is celery beat')
-	
-	print('this is celery beat')
-=======
 def create_items_from_api_beat_latest():  
 	latest_api_item_key= requests.get('https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty').json()
 	latest_database_object_api_key=int(Items.objects.latest('api_id').api_id)
@@ -94,4 +46,3 @@ def dowload_trending():
 	latest_items= list(requests.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty').json())
 	latest_items.sort()
 	create_items_from_api(latest_items[0],latest_items[len(latest_items)-1])
->>>>>>> f66bbbf (commit changes to doc)
