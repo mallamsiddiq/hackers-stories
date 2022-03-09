@@ -1,4 +1,25 @@
 # DOCUMENTATION  ON THE APP.
+
+### OVERVIEW
+
+Have you ever heard of Hacker News? It's a great source of tech-related news. They provide a public API at https://hackernews.api-docs.io.
+
+The goal is to make a web app to make it easier to navigate the news:
+
+Using django, celery etc. i make a new virtualenv.
+I make a scheduled job to sync the published news to a DB every 5 minutes. I start with the latest 100 items, and sync every new item from there. Note: here are several types of news (items), with relations between them;
+I Implement a view to list the latest news;
+Allow filtering by the type of item;
+i Implement a search box for filtering by text;
+As there are hundreds of news I use pagination of 100
+It is also important to expose an API so that our data can be consumed so i did
+
+in the API:	GET : List of items, allowing filters to be specified;
+			POST : Add new items to the database (not present in Hacker News)
+			PUT : Make changes to an item if it was creted by us
+
+### NOTE
+
 Please kindly set up the database by picking an option from below, then run the web before celery. Just follow the instructions as I've detailed below, relax!! you'll be cool. Please note that the db.rar file was zipped so that I won’t exceed the required < 10mb criteria of the submission form (if zipped). Apologies for the inconvenience in advance.
 SET-UP
 
