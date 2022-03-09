@@ -1,5 +1,6 @@
 {% load tag_library %}
 {% include 'blog/base/header.html' %}
+<h1><b>HACKERS' NEWS & STORIES</b></h1>
 <a class='btn btn-success add-button' href="{% url 'list-api' %}">
   <i class="fa fa" aria-hidden="true" style="font-size: 3.5em">api</i>
 </a>
@@ -25,12 +26,14 @@
           
         </div>
         <b style="position: absolute;left:  1em;">
-                <span><i class="fa fa-pencil"></i></span>
-                {% if item.by %}
-                <span>{{item.by}}</span>
-                {%else%}
-                <span>anonymous</span>
-                {%endif%}
+          <a href="{% url 'author-review' item.by %}">
+            <span><i class="fa fa-pencil"></i></span>
+            {% if item.by %}
+            <span>{{item.by}}</span>
+            {%else%}
+            <span>anonymous</span>
+            {%endif%}
+          </a>
             </b>
       </div>
     </a>

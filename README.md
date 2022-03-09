@@ -24,16 +24,17 @@ More info is provided at #NAVIGATION in the bottom
 ### NOTE
 
 Please kindly set up the database by picking an option from below, then run the web before celery. Just follow the instructions as I've detailed below, relax!! you'll be cool. Please note that the db.rar file was zipped so that I won’t exceed the required < 10mb criteria of the submission form (if zipped). Apologies for the inconvenience in advance.
-##SET-UP
 
-## SETTING UP THE WEB
+## SET-UP
+
+### SETTING UP THE WEB
 This is yet built to run locally so kindly follow these steps to run.
 On your local machine inside the root directory ensure pip and python are installed and run:
 	pip  install -r requirements.txt
 
 I recommend you don’t run the server yet, please kindly read the database setup first. Thanks.
 
-## POPULATING THE DATABASE:
+### POPULATING THE DATABASE:
 
 I recommend using sqlite3 as it’s what I've configured by default. I've seeded enough items from the api to the db so you can play with them on the new interface i built. Kindly do one of the three methods below: 
 ( Doing one of these is recommended)
