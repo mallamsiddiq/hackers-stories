@@ -98,6 +98,8 @@ This app is recommended to run locally,  if for any reason you want  to  make it
 Also, the API items are downloaded once at a time and hence might not be expected that all items be found on this app soon.
 And also please note that madedata.json file might be excluded if the whole file exceed what the provided form can take and hence option 2 of seeding the database might not be feasible
 
+### NOTE
+
 P.s. you can populate the database by trending news, simply run my custom command
 
 	python manage.py save_latest_items 
