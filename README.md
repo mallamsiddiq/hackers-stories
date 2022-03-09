@@ -1,15 +1,15 @@
-#DOCUMENTATION  ON THE APP.
+# DOCUMENTATION  ON THE APP.
 Please kindly set up the database by picking an option from below, then run the web before celery. Just follow the instructions as I've detailed below, relax!! you'll be cool. Please note that the db.rar file was zipped so that I won’t exceed the required < 10mb criteria of the submission form (if zipped). Apologies for the inconvenience in advance.
 SET-UP
 
-##SETTING UP THE WEB
+## SETTING UP THE WEB
 This is yet built to run locally so kindly follow these steps to run.
 On your local machine inside the root directory ensure pip and python are installed and run:
-pip  install -r requirements.txt
+	pip  install -r requirements.txt
 
 I recommend you don’t run the server yet, please kindly read the database setup first. Thanks.
 
-##POPULATING THE DATABASE:
+## POPULATING THE DATABASE:
 
 I recommend using sqlite3 as it’s what I've configured by default. I've seeded enough items from the api to the db so you can play with them on the new interface i built. Kindly do one of the three methods below: 
 ( Doing one of these is recommended)
@@ -17,25 +17,33 @@ I recommend using sqlite3 as it’s what I've configured by default. I've seeded
 1. unzip the db.rar file 
 
 	unzip the db.rar file and run (skip if not zipped)
+
 	python  manage.py migrate
 
 2. Or:  (if madedata.rar or madedata.json  file exists) ( if it doesn’t skip this)
+
 	Unzip the madedata.rar to have madedata.json then run: (skip if not zipped)
+
 	python  manage.py migrate
-	python manage.py loaddata madedata.json   
+
+	python manage.py loaddata madedata.json 
+
 	( this might take a while to download)
 
 3. Or: If you’re not comfortable working with these ready made data grab your coffee I've got you covered. I’ve created a custom django command called save_latest_items  for you to download the latest news and stories for the app to start with kidly run:
 
 	Delete any db.sqlite file in root directory (if any ) then run:
+
 	python  manage.py migrate
+
 	python manage.py save_latest_items 	
+
 	( this might take a while to download)
 
 And boom!! your database is loaded with items needed enough to start.
 {note: running  the custom command ‘save_latest_items’ at anytime would only update the database with latest from the API}
 
-##Running the web:
+## Running the web:
 
 After following the earlier steps kidly run this command
 
@@ -44,13 +52,15 @@ After following the earlier steps kidly run this command
 And that should do it for this stage as I’ve migrated the database from postgres to sqlite3 for ease of third-party integration and testing.
  
  
-##PERIODIC-TASK set-up (celery)
+## PERIODIC-TASK set-up (celery)
  
 Ensure the earlier steps was observed and redis is installed up and  running on your machine then run this this command on separate CLI’s one after the other (make sure one finishes execution before other)
  
-redis-server
-celery -A seedtest worker -l info --without-gossip --without-mingle --without-	heartbeat -Ofair --pool=solo
-celery -A seedtest beat -l info
+	redis-server
+
+	celery -A seedtest worker -l info --without-gossip --without-mingle --without-	heartbeat -Ofair --pool=solo
+
+	celery -A seedtest beat -l info
 
 And boom!! your app is running with latest items getting downloaded automatically from the api on on port: http://127.0.0.1:8000/items/ 
  
