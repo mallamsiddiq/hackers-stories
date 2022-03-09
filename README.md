@@ -28,7 +28,7 @@ I recommend using sqlite3 as it’s what I've configured by default. I've seeded
 
 		python manage.py loaddata madedata.json 
 
-	( this might take a while to download)
+		( this might take a while to download)
 
 3. Or: If you’re not comfortable working with these ready made data grab your coffee I've got you covered. I’ve created a custom django command called save_latest_items  for you to download the latest news and stories for the app to start with kidly run:
 
@@ -98,9 +98,12 @@ This app is recommended to run locally,  if for any reason you want  to  make it
 Also, the API items are downloaded once at a time and hence might not be expected that all items be found on this app soon.
 And also please note that madedata.json file might be excluded if the whole file exceed what the provided form can take and hence option 2 of seeding the database might not be feasible
 
-P.s. you can populate the database by simply run my custom command
-	python manage.py save_latest_items
- 
+P.s. you can populate the database by trending news, simply run my custom command
+
+	python manage.py save_latest_items 
+
+And also, every five minute i seed the database with the latest news than what we have saved in the db and not 100 to ensure we don’t miss out on the latest news.
+
  
 Thanks
  
