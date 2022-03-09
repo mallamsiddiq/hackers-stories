@@ -17,7 +17,11 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
     'add-every-continuesly-at-1min': {
         'task': 'blog.tasks.create_items_from_api_beat_latest',
+<<<<<<< HEAD
+        'schedule': 20.0
+=======
         'schedule': 60*5
+>>>>>>> f66bbbf (commit changes to doc)
         # 'schedule': crontab(hour=0, minute=46, day_of_month=19, month_of_year = 6),
         #'args': (2,)
     }
