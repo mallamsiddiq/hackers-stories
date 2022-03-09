@@ -1,0 +1,35 @@
+
+.add-button{background-color: rgba(12,12,45,.7);position: fixed;bottom: 3.5em;right: 3.5em;border-radius: 50%;padding: 13px;z-index: 3}
+
+div{position: relative;}
+.home{background-color: rgba(12,12,45,.7);position: fixed;top: 2em;left:  1.9em;border-radius: 5%;padding: 13px;box-shadow: 2px 2px 2px green}
+.home a {text-decoration: none;font-size: 4em}
+a :hover{text-decoration: none;}
+
+
+.filter-box div{}
+
+input,textarea{outline: none;border: 0;border-radius: 2px;padding: 1em;color: green}
+
+.dropbtn { background-color: #04AA6D; color: white;padding: 16px;font-size: 16px;border: none;}
+
+.dropdown { position: relative; display: inline-block;z-index: 2}
+
+.dropdown-content { display: none;position: absolute;right: 0px; background-color: #f1f1f1;min-width: 160px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;}
+
+.dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block;}
+.dropdown-content a:hover {background-color: #ddd;}
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.filter-box{position: fixed;top:3em;right: 3em; padding: 1em}
+.search-box input{display: none;}
+.search-box:hover input{display: inline-block;}
+.search-box:hover {background-color: white;padding: 1px}
+
+.list-group, .drop-search{font-size: 1em}
+.text-box{background-color:white;border-radius: 1em;padding: 2em;position: relative;min-width: 20em}
+.kids{background-color: rgba(120,123,45,.7);margin: .4em;padding: 5px 5px 25px 5px;border-radius: 2px;width: 70%}
+.kid-box{display: flex;justify-content: flex-end;flex-direction: column;align-items: flex-end;}
+*{color: rgba(10,10,95,.9)}

@@ -1,0 +1,82 @@
+{% load tag_library %}
+{% include 'blog/base/header.html' %}
+<a class='btn btn-success add-button' href="{% url 'list-api' %}">
+  <i class="fa fa" aria-hidden="true" style="font-size: 3.5em">api</i>
+</a>
+<ul class='list-group'>
+  {% for item in page_obj %}
+    <a href="{% url 'item-detail' item.id %}">
+      
+      <div class="row list-group-item" style="width: 74vw;padding-bottom: 33px;position: relative;">
+        <p class="" style="color:rgba(172,22,65,.9);font-size: 1.4em">
+          {% if not item.title|lower == 'none' %}
+          {%autoescape off%}{{item.title|upper}}{% endautoescape %} <br>
+          {% else %}
+          {%autoescape off%}{{item.text|upper}}{% endautoescape %} <br>
+          {% endif %}
+        </p>
+        <b style="position: absolute;right: 1em;top: 0em;font-size: .7em">
+            <span><i class="fa fa-compass"></i></span>
+            <span>A {{item.type}}</span>
+        </b>
+        <div style="position:absolute;right: 1em;font-size: .7em;font-weight: 700">
+          <span style="display: inline-block;color: rgba(272,22,145,.7)">{{item.time|date:"M Y"}}</span><br>
+          <span style="display: inline-block;">{{item.time|date:"d D P "}}</span>
+          
+        </div>
+        <b style="position: absolute;left:  1em;">
+                <span><i class="fa fa-pencil"></i></span>
+                {% if item.by %}
+                <span>{{item.by}}</span>
+                {%else%}
+                <span>anonymous</span>
+                {%endif%}
+            </b>
+      </div>
+    </a>
+  {% endfor %}
+</ul>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<div class="dropdown filter-box drop-search">
+  <button class="dropbtn">FILTER <i class="fa fa-filter" aria-hidden="true"></i> </button>
+  <div class="dropdown-content">
+    <a href="?item_type=job">JOB</a>
+    <a href="?item_type=story">STORY</a>
+    <a href="?item_type=comment">COMMENT </a>
+    <a href="?item_type=poll">POLL</a>
+    <a href="?item_type=pollopt">POLLOPT</a>
+  </div>
+</div>
+
+<div class="search-box" style="left: 3em;right:'';top: 9em;position: fixed;box-shadow: 1px 1px 1px 1px grey;z-index: 2;display: flex;flex-direction: row;">
+  <button ><i class="fa fa-search" aria-hidden="true"></i> </button>
+  <form method="get">
+        <input type="text" name="text" id="" placeholder="search to filter in text">
+  </form>
+  </div>
+</div>
+
+
+
+{% include 'blog/base/footer.html' %}
+
+
+
