@@ -20,13 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY',default='django-insecure-d3k8g9jlo116v0)(t7ec((*f3w-lgb_h@&s!a&&-fmjmlf7jqj')
+SECRET_KEY = os.environ.get('SECRET_KEY',config('SECRET_KEY',default='django-insecure-d3k8g9jlo116v0)(t7ec((*f3w-lgb_h@&s!a&&-fmjmlf7jqj'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=config('DEBUG', cast=bool,default=0)
+DEBUG=os.environ.get('DEBUG',config('DEBUG', cast=bool,default=0))
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv(),default=','.format('localhost', '127.0.0.1'))
 
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
 # Application definition
 
@@ -76,32 +77,23 @@ WSGI_APPLICATION = 'seedtest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+DATABASES={
+   'default':{
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': os.environ.get('POSTGRES_NAME',config('POSTGRES_NAME')),
+      'USER': os.environ.get('POSTGRES_USER',config('POSTGRES_USER')),
+      'PASSWORD': os.environ.get('POSTGRES_PASSWORD',config('POSTGRES_PASSWORD')),
+      'HOST': os.environ.get('POSTGRES_HOST',config('POSTGRES_HOST')),
+      'PORT': 5432,
+   }
 }
-# DATABASES={
-#    'default':{
-#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#       'NAME': os.environ.get('POSTGRES_NAME'),
-#       'USER': os.environ.get('POSTGRES_USER'),
-#       'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-#       'HOST': 'db',
-#       'PORT': 5432,
-#    }
-# }
-# DATABASES={
-#    'default':{
-#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#       'NAME': config('POSTGRES_DB'),
-#       'USER': config('POSTGRES_USER'),
-#       'PASSWORD': config('POSTGRES_PASSWORD'),
-#       # 'HOST': 'db',
-#       'PORT': 5432,
-#    }
-# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

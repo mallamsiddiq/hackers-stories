@@ -41,13 +41,13 @@ I recommend using sqlite3 as it’s what I've configured by default. I've seeded
 
 1. unzip the db.rar file 
 
-		unzip the db.rar file and run (skip if not zipped)
+		unzip the db.rar file (skip if not zipped), and run :
 
 		python  manage.py migrate
 
 2. Or:  (if madedata.rar or madedata.json  file exists) ( if it doesn’t skip this)
 
-		Unzip the madedata.rar to have madedata.json then run: (skip if not zipped)
+		Unzip the madedata.rar to have madedata.json (skip if not zipped), then run: 
 
 		python  manage.py migrate
 
