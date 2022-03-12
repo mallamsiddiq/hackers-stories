@@ -4,6 +4,6 @@ env/
 #db.sqlite3
 .env
 .env.dev
-.env.build
+.env.ndoc
 data/
 New folder/
