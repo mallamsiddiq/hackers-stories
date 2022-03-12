@@ -1,0 +1,17 @@
+{% include 'blog/base/header.html' %}
+
+<div style="border-radius: 5%;background:grey;display: flex;align-items: center;justify-content: center;margin: 20px;position:fixed;bottom:  3em;padding: 3em">	
+		<a style=" text-align: center;color: white;letter-spacing: .1em;text-decoration: none;font-weight: 700" 
+		href="{% url 'home' %}"> Would you love going back HOME ??</a>
+	</div>
+
+
+	<p > 
+		<h3 style="font-size: 2em"><b><i class="fa fa-exclamation-circle"></i> {{code}}</b></h3>
+		<h4 style="font-size:3em" >You're accessing a lost url</h4>
+	</p>
+
+
+
+
+{% include 'blog/base/footer.html' %}

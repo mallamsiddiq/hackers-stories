@@ -1,0 +1,47 @@
+{% include 'blog/base/header.html' %}
+{% load tag_library %}
+
+<div class="" style="display: flex; flex-direction: column;align-items: flex-end;">
+    <div class="text-box" style="width: 90%">
+    	<span>This a page that details the recent activities of user</span>
+    	<h1 style="width: 90%;font-weight: 900"><i class="fa fa-user-o" style="font-size:24px"></i><b>{{username}}</b></h1> <br>
+        
+    </div>
+    <div class="kid-box row ">
+        <h4 style="margin-right: 2em;float: right;"> <b>{{kids|tem_check_len}} Related activivities    </b></h4>
+
+        
+        {% for kid in kids%}
+        <div class="kids ">
+            <a style="color: rgb(120,56,12)" href="{% url 'item-detail' kid.id %}">
+                {% if not kid.title == 'None' %}
+                <p><b>{{kid.title}}</b></p>
+                
+                {% endif %}
+                {% if not kid.text == 'None' %}
+                <p id="body">{%autoescape off%}{{kid.text }}{% endautoescape %}</p>
+                {% endif %}
+            </a>
+            <b style="position: absolute;left: 1em">
+	            <span><i class="fa fa-thumbs-up"></i></span>
+	            <span>{{kid.score}} &nbsp; &nbsp;</span>
+	            <span><i class="fa fa-comment"></i></span>
+	            <span>{{kid.descendants}}</i></span>
+	        </b>
+	        <b style="position:absolute;right: 1em;font-size: .7em;bottom: 1em; font-weight: 700">
+	          <span style="display: inline-block;color: rgba(272,22,145,.7)">{{kid.time|date:"M Y"}}</span><br>
+	          <span style="display: inline-block;">{{kid.time|date:"d D P "}}</span>
+	        </b>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<a class='todos-edit btn btn-outline-secondary add-button' href="{% url 'list-api' %}">
+    <i class="fa fa-edit" style="font-size: 2.5em;color: rgba(190,223,45,.7);" aria-hidden="true"></i>
+</a>
+
+
+{% include 'blog/base/footer.html' %}
