@@ -107,7 +107,7 @@ As there are different ways by which items from the API could be downloaded and 
 
 # NAVIGATION
 
-The api does not provide an end point where all articles could be downloaded at once, so this makes it to be really interesting as I have to download this items one by one, I stated saving to database right from the onset of beginning of Post creation, and I save 40000+ plus earliest Posts and 20000+ latest post to easily test and check for cross functionality and have assured behavior of the relation of these items.
+The api does not provide an end point where all articles could be downloaded at once, so this makes it to be really interesting as I have to download this items one by one, I started saving to database right from the onset of beginning of Post creation, and I save 40000+ plus earliest Posts and 340000+ latest post making up to 70000+ post to easily test and check for cross functionality and have assured behavior of the relations between these items.
  
 I have built and hosted the app on port 8000 with all functionality as described in the test requirements.
 Check port:: http://127.0.0.1:8000/items/  to view the list of all  latest top stories and items. On the top right corner is a filter button to filter by type and to the left is a search icon to filter by text, Here you would see a plus icon on the bottom right corner to navigate to RESTfull API endpoint @ http://127.0.0.1:8000/api/  where you can view and create new post with necessary restful requirements.
