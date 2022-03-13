@@ -29,7 +29,7 @@ input,textarea{outline: none;border: 0;border-radius: 2px;padding: 1em;color: gr
 .search-box:hover {background-color: white;padding: 1px}
 
 .list-group, .drop-search{font-size: 1em}
-.text-box{background-color:white;border-radius: 1em;padding: 2em;position: relative;min-width: 20em}
-.kids{background-color: rgba(120,123,45,.7);margin: .4em;padding: 5px 5px 25px 5px;border-radius: 2px;width: 70%}
+.text-box{background-color:white;border-radius: 1em;padding: 2em;position: relative;min-width: 40em}
+.kids{background-color: rgba(120,123,45,.7);margin: .4em;padding: 5px 5px 25px 5px;border-radius: 2px;width: 70%;min-height: 50px}
 .kid-box{display: flex;justify-content: flex-end;flex-direction: column;align-items: flex-end;}
 *{color: rgba(10,10,95,.9)}

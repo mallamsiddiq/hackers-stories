@@ -8,11 +8,28 @@
         
     </div>
     <div class="kid-box row ">
-        <h4 style="margin-right: 2em;float: right;"> <b>{{kids|tem_check_len}} Related activivities    </b></h4>
+        <h4 style="margin-right: 2em;width: 100%"> <b style="float: right;">This user has {{kids|tem_check_len}} Related activivities||stories||comments    </b>
+                <br>    
+            {% if kids.has_previous or kids.has_next %}
+            <div class="step-links">
+                {% if kids.has_previous %}
+                    <a href="?page=1">&laquo; 1st </a>
+                    <a href="?page={{ kids.previous_page_number }}"> <i class="fa fa-angle-left" style="color: inherit;"></i></a>
+                {% endif %}
 
-        
+                <span class="current">
+                    Page {{ kids.number }} of {{ kids.paginator.num_pages }}.
+                </span>
+
+                {% if kids.has_next %}
+                    <a href="?page={{ kids.next_page_number }}">next</a>
+                    <a href="?page={{ kids.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </h4>
         {% for kid in kids%}
-        <div class="kids ">
+        <div class="kids" >
             <a style="color: rgb(120,56,12)" href="{% url 'item-detail' kid.id %}">
                 {% if not kid.title == 'None' %}
                 <p><b>{{kid.title}}</b></p>

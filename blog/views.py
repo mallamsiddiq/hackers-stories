@@ -48,9 +48,7 @@ def home(request):
     paginator = Paginator(filter_form.qs, 100)
     if len (filter_form.qs)<1:
              return HttpResponse("<h1>no quyery matches your search's preference </i>.</h1><span> kindly input valid parameter.</span>")
-    page_number = 1
-    if request.GET.get('page'):
-        page_number = request.GET.get('page')
+    page_number = request.GET.get('page') if request.GET.get('page') else 1
     page_obj = paginator.get_page(page_number)
     return render(request, 'blog/home.html', {'page_obj':page_obj,'my_filter':filter_form})
 
@@ -59,7 +57,11 @@ def details(request, id):
         object_data=Items.objects.get(id=id)
     except Exception as e:
         return HttpResponse("<h1>no quyery matches your search </i>.</h1><span> kindly input valid parameter other than.</span> <h5>{}</h5>".format(id))
-    kids=Items.objects.filter(parent=object_data.api_id) # i get the kids from parent to avoid conflicting kid nort downloaded yet
+    kids=Items.objects.filter(parent=object_data.api_id) #if object_data.api_id else [] # i get the kids from parent to avoid conflicting kid nort downloaded yet
+
+    paginator = Paginator(kids, 100)
+    page_number = request.GET.get('page') if request.GET.get('page') else 1
+    kids = paginator.get_page(page_number)
     item_parent=None
     if object_data.parent:
         try:
@@ -119,5 +121,8 @@ class item_detail_api(APIView):
 
 def author_review(request, slug):
     authors_post=Items.objects.filter(by=slug).order_by('-score','-descendants')
+    paginator = Paginator(authors_post, 100)
+    page_number = request.GET.get('page') if request.GET.get('page') else 1
+    authors_post = paginator.get_page(page_number)
     context = {'username':slug,'kids':authors_post}
     return render(request, 'blog/author_review.html', context)
