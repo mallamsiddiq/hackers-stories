@@ -41,7 +41,7 @@ I recommend using sqlite3 as it’s what I've configured by default. I've seeded
 
 1. unzip the db.rar file 
 
-		unzip the db.rar file (skip if not zipped), and run :
+		unzip the db.rar file to have db.sqlite3 (skip if not zipped), and run :
 
 		python  manage.py migrate
 
