@@ -56,11 +56,12 @@
 
     </div>
     <div class="kid-box row">
-        <h4 style="margin-right: 2em;width: 64%"> <b style="float: right;">{{kids|tem_check_len}} Related Replies    </b>
+        <h4 style="margin-right: 2em;width: 64%"> <b style="float: right;">{{kids.paginator.count}} Related Replies    </b>
                 <br>    
         <div class="step-links">
-            {% if kids.has_previous %}
+            
             {% if kids.has_previous or kids.has_next %}
+            {% if kids.has_previous %}
                 <a href="?page=1">&laquo; 1st </a>
                 <a href="?page={{ kids.previous_page_number }}"> <i class="fa fa-angle-left" style="color: inherit;"></i></a>
             {% endif %}
