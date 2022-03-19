@@ -30,6 +30,7 @@ Please kindly set up the database by picking an option from below, then run the 
 ### SETTING UP THE WEB
 This is yet built to run locally so kindly follow these steps to run.
 On your local machine inside the root directory ensure pip and python are installed and run:
+
 	pip  install -r requirements.txt
 
 I recommend you don’t run the server yet, please kindly read the database setup first. Thanks.
